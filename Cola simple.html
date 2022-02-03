@@ -1,0 +1,125 @@
+<DOCTYPE! html>
+<html>
+    <head>
+        <title>Cola simple</title>
+        <script>
+
+            function init()
+            {
+                q = new queue()
+                //stack.constructor()
+            }
+
+            function doenqueue()
+            {
+                q.enqueue()
+
+            }
+
+            function dodequeue()
+            {
+                q.dequeue()
+            }
+            function doempty()
+            {
+                alert(q.empty())
+            }
+            function domakenull()
+            {
+                q.makenull()
+            }
+
+            class queue
+            {
+                constructor()
+                {
+                    this.data = new Array(10)
+                    this.sp = 0
+                    this.inicio=0
+                    for (var i=0; i<10; i++)
+                    {
+                        this.data[i]=document.createElement("input")
+                        this.data[i].type="button"
+                        this.data[i].style.position="absolute"
+                        document.body.appendChild(this.data[i])
+                        this.data[i].style.left=(70+i*70)+"px"
+                        this.data[i].style.aling="center"
+                        this.data[i].style.top=(150)+ "px"
+                        this.data[i].style.width="60px"
+                        
+                    }
+                }
+
+                enqueue()
+                {
+                    if (this.sp<10)
+                    {
+                        var final=(this.inicio+this.sp)%10
+                        console.log(final)
+                        this.data[final].value=(Math.random() * (100 - 1) + 1).toFixed(2);
+                        //this.data[this.sp].value=Math.trunc(Math.random()*83+3)
+                        //console.log(self.data[this.sp])
+                        this.sp++
+                    }
+                    else
+                    {
+                        alert("Cola llena")
+                    }
+                }
+
+                dequeue()
+                {
+                    if (this.sp>0)
+                    {
+                        var temp=this.data[0].value
+                        for (var i=1; i<this.sp; i++)
+                        {
+                            this.data[i-1].value=this.data[i].value
+                        }
+                        this.data[this.sp-1].value=""
+                        this.sp--
+                    }
+                    else
+                    {
+                        alert("Cola Vacia")
+                    }
+                }
+                empty()
+                {
+                    return this.sp==0
+                }
+                makenull()
+                {
+                    for(var i=0; i<10; i++)
+                    {
+                        
+                        this.data[i].value=""
+                    }
+                    this.sp=0
+                    this.inicio=0
+                }
+            }
+
+        </script>
+    </head>
+    <body onload="init()" style="background-color:beige;"> 
+	<h1 style="text-aling: center;">Cola Simple <h1>
+	<hr>
+	<input type="button" value="Enqueue" onclick="doenqueue()">
+	<input type="button" value="Dequeue" onclick="dodequeue()">
+	<input type="button" value="Empty" onclick="doempty()">
+    <input type="button" value="makenull" onclick="domakenull()">
+    </body>
+
+</html>
+<!--
+#DOCUMENTACIÓN INTERNA
+#Programador:Sofia  Velásquez
+#Datos del programador: Sofiamishel2003@gmail.com
+#Fin: Reforzar conocimientos sobre la cola
+#Lenguaje: html y javascript
+#Net Framewor: 4.5
+#Recursos: visual code
+#Descripción: Desarrollar un programa que haga una cola Una cola es una estructura de datos, caracterizada por ser una secuencia de elementos en la que la operación de inserción Enqueue se realiza por un extremo y la operación de extracción Dequeue por el otro
+#Ultima modificación 26/02/2021
+-->
